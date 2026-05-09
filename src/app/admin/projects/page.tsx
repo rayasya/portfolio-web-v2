@@ -1,12 +1,13 @@
-import { getProjects, addProject, deleteProject } from "@/lib/actions";
+import { getProjects } from "@/lib/actions";
 import DeleteButton from "@/components/admin/DeleteButton";
 import AddProjectForm from "@/components/admin/AddProjectForm";
+import EditProjectForm from "@/components/admin/EditProjectForm";
 
 export default async function AdminProjects() {
   const projects = await getProjects();
 
   return (
-    <div className="p-6">
+    <div>
       <h1 className="text-2xl font-bold mb-8">Projects</h1>
 
       <AddProjectForm />
@@ -32,7 +33,10 @@ export default async function AdminProjects() {
                   {project.techStack?.join(", ")}
                 </p>
               </div>
-              <DeleteButton id={project.id} type="project" />
+              <div className="flex gap-2">
+                <EditProjectForm project={project} />
+                <DeleteButton id={project.id} type="project" />
+              </div>
             </div>
           ))
         )}

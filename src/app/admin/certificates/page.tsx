@@ -1,12 +1,13 @@
 import { getCertificates } from "@/lib/actions";
 import DeleteButton from "@/components/admin/DeleteButton";
 import AddCertificateForm from "@/components/admin/AddCertificateForm";
+import EditCertificateForm from "@/components/admin/EditCertificateForm";
 
 export default async function AdminCertificates() {
   const certificates = await getCertificates();
 
   return (
-    <div className="p-6">
+    <div>
       <h1 className="text-2xl font-bold mb-8">Certificates & Achievements</h1>
 
       <AddCertificateForm />
@@ -32,7 +33,10 @@ export default async function AdminCertificates() {
                   {cert.issuer} · {cert.year}
                 </p>
               </div>
-              <DeleteButton id={cert.id} type="certificate" />
+              <div className="flex gap-2">
+                <EditCertificateForm certificate={cert} />
+                <DeleteButton id={cert.id} type="certificate" />
+              </div>
             </div>
           ))
         )}

@@ -25,6 +25,22 @@ export async function addProject(data: {
   revalidatePath("/admin");
 }
 
+export async function updateProject(
+  id: number,
+  data: {
+    title: string;
+    description: string;
+    techStack: string[];
+    liveUrl?: string;
+    githubUrl?: string;
+    imageUrl?: string;
+  },
+) {
+  await db.update(projects).set(data).where(eq(projects.id, id));
+  revalidatePath("/");
+  revalidatePath("/admin");
+}
+
 export async function deleteProject(id: number) {
   await db.delete(projects).where(eq(projects.id, id));
   revalidatePath("/");
@@ -45,6 +61,21 @@ export async function addCertificate(data: {
   type?: string;
 }) {
   await db.insert(certificates).values(data);
+  revalidatePath("/");
+  revalidatePath("/admin");
+}
+
+export async function updateCertificate(
+  id: number,
+  data: {
+    title: string;
+    issuer: string;
+    year: string;
+    credentialUrl?: string;
+    type?: string;
+  },
+) {
+  await db.update(certificates).set(data).where(eq(certificates.id, id));
   revalidatePath("/");
   revalidatePath("/admin");
 }
