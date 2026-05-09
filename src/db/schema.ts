@@ -27,5 +27,6 @@ export const contacts = pgTable("contacts", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   message: text("message").notNull(),
+  isRead: boolean("is_read").default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

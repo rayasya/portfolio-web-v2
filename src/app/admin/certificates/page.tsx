@@ -1,25 +1,25 @@
-import { getProjects, addProject, deleteProject } from "@/lib/actions";
+import { getCertificates } from "@/lib/actions";
 import DeleteButton from "@/components/admin/DeleteButton";
-import AddProjectForm from "@/components/admin/AddProjectForm";
+import AddCertificateForm from "@/components/admin/AddCertificateForm";
 
-export default async function AdminProjects() {
-  const projects = await getProjects();
+export default async function AdminCertificates() {
+  const certificates = await getCertificates();
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-8">Projects</h1>
+      <h1 className="text-2xl font-bold mb-8">Certificates & Achievements</h1>
 
-      <AddProjectForm />
+      <AddCertificateForm />
 
       <div className="mt-8 flex flex-col gap-3">
-        {projects.length === 0 ? (
+        {certificates.length === 0 ? (
           <p className="text-sm" style={{ color: "var(--muted)" }}>
-            Belum ada project.
+            Belum ada sertifikat.
           </p>
         ) : (
-          projects.map((project) => (
+          certificates.map((cert) => (
             <div
-              key={project.id}
+              key={cert.id}
               className="flex items-center justify-between p-4 rounded-xl border"
               style={{
                 background: "var(--card)",
@@ -27,12 +27,12 @@ export default async function AdminProjects() {
               }}
             >
               <div>
-                <h3 className="font-medium text-sm">{project.title}</h3>
+                <h3 className="font-medium text-sm">{cert.title}</h3>
                 <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
-                  {project.techStack?.join(", ")}
+                  {cert.issuer} · {cert.year}
                 </p>
               </div>
-              <DeleteButton id={project.id} type="project" />
+              <DeleteButton id={cert.id} type="certificate" />
             </div>
           ))
         )}
