@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { getProjects, getCertificates } from "@/lib/actions";
 import ContactForm from "@/components/admin/ContactForm";
 import Image from "next/image";
+import About from "@/components/About";
 
 export default async function Home() {
   const projects = await getProjects();
@@ -49,6 +50,9 @@ export default async function Home() {
             </a>
           </div>
         </section>
+
+        {/* About Me */}
+        <About />
 
         {/* Projects */}
         <section
