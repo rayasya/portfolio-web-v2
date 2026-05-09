@@ -73,7 +73,7 @@ export default function ContactForm() {
             />
             <textarea
               name="message"
-              placeholder="Ceritain projectmu..."
+              placeholder="Isi pesan..."
               rows={4}
               required
               className="px-4 py-2.5 rounded-lg border text-sm w-full resize-none"

@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist_Mono, Sora } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-body",
   subsets: ["latin"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -28,7 +34,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="id" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${sora.variable} ${fraunces.variable} ${geistMono.variable} antialiased`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
