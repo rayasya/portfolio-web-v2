@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Rayasya Dziqi Cahyana — Fullstack Software Engineer",
+  title: "Rayasya Cahyana — Fullstack Software Engineer",
   description:
     "Portofolio interaktif Fullstack Software Engineer oleh Muhammad Rayasya Dziqi Cahyana. Menampilkan proyek REST API, arsitektur database PostgreSQL, dan antarmuka web modern.",
   keywords: [
