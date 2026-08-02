@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Award, BadgeCheck } from "lucide-react";
+import { ExternalLink, ShieldCheck, Award } from "lucide-react";
 
 export type CertificateData = {
   id: number;
@@ -21,82 +21,53 @@ export default function CertificateItem({
   certificate,
   index,
 }: CertificateItemProps) {
-  const Icon = certificate.type === "achievement" ? BadgeCheck : Award;
-
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.06 }}
-      whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-[1.8rem] border p-4 sm:p-5"
-      style={{
-        borderColor: "var(--border)",
-        background:
-          "linear-gradient(180deg, color-mix(in srgb, var(--card) 86%, transparent) 0%, color-mix(in srgb, var(--background) 96%, transparent) 100%)",
-        boxShadow: "0 14px 36px rgba(0,0,0,0.06)",
-      }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="group rounded-xl border border-slate-800 bg-slate-950 font-mono p-4 shadow-lg hover:border-emerald-500/50 transition-colors"
     >
-      <div
-        className="absolute left-0 top-0 h-full w-1 bg-[linear-gradient(180deg,var(--accent),var(--accent2))]"
-        aria-hidden="true"
-      />
-
-      <div className="flex items-start gap-4 pl-2">
-        <div
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border"
-          style={{
-            borderColor: "var(--border)",
-            background: "color-mix(in srgb, var(--accent) 10%, transparent)",
-            color: "var(--accent)",
-          }}
-        >
-          <Icon className="h-5 w-5" />
-        </div>
-
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p
-                className="text-[0.68rem] uppercase tracking-[0.28em]"
-                style={{ color: "var(--muted)" }}
-              >
-                certificate
-              </p>
-              <h3 className="mt-2 truncate font-heading text-lg leading-tight sm:text-xl">
-                {certificate.title}
-              </h3>
-              <p
-                className="mt-1 text-xs uppercase tracking-[0.2em]"
-                style={{ color: "var(--muted)" }}
-              >
-                {certificate.issuer} · {certificate.year}
-              </p>
-            </div>
-
-            {certificate.credentialUrl ? (
-              <a
-                href={certificate.credentialUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] transition-transform duration-200 hover:-translate-y-0.5"
-                style={{ borderColor: "var(--border)", color: "var(--accent)" }}
-              >
-                verify
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            ) : (
-              <span
-                className="rounded-full border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em]"
-                style={{ borderColor: "var(--border)", color: "var(--muted)" }}
-              >
-                archived
-              </span>
-            )}
+      <div className="flex items-start justify-between gap-3 border-b border-slate-800 pb-3 mb-3">
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+            <ShieldCheck className="h-4 w-4" />
+          </div>
+          <div>
+            <span className="text-[10px] text-emerald-400 font-bold tracking-wider">
+              CERT_VALID // SSL_VERIFIED
+            </span>
+            <h3 className="text-sm font-bold text-slate-100 font-sans truncate max-w-[220px] sm:max-w-xs">
+              {certificate.title}
+            </h3>
           </div>
         </div>
+
+        <span className="rounded bg-slate-900 border border-slate-800 px-2 py-0.5 text-[10px] text-slate-400">
+          {certificate.year}
+        </span>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+        <p className="text-[11px] text-slate-400">
+          Issuer: <strong className="text-cyan-400">{certificate.issuer}</strong>
+        </p>
+
+        {certificate.credentialUrl ? (
+          <a
+            href={certificate.credentialUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1 text-[11px] font-bold text-emerald-400 hover:underline"
+          >
+            Verify Cert <ExternalLink className="h-3 w-3" />
+          </a>
+        ) : (
+          <span className="text-[10px] text-slate-500">SIGNED_INTERNAL</span>
+        )}
       </div>
     </motion.article>
   );
 }
+

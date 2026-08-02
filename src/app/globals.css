@@ -12,23 +12,25 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0f;
-  --muted: #6e6c82;
-  --border: rgba(0, 0, 0, 0.08);
-  --accent: #5a52d5;
-  --accent2: #0f9b8e;
-  --card: #f5f4f0;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --border: rgba(15, 23, 42, 0.12);
+  --accent: #059669;
+  --accent2: #0284c7;
+  --card: #ffffff;
+  --card-header: #f1f5f9;
 }
 
 .dark {
-  --background: #0a0a0f;
-  --foreground: #f0eff8;
-  --muted: #8887a0;
-  --border: rgba(255, 255, 255, 0.07);
-  --accent: #7c6ff7;
-  --accent2: #4fd1c5;
-  --card: #111118;
+  --background: #030712;
+  --foreground: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #10b981;
+  --accent2: #06b6d4;
+  --card: #0b0f19;
+  --card-header: #0f172a;
 }
 
 * {
@@ -36,26 +38,46 @@
   border-color: var(--border);
 }
 
-body {
-  background:
-    radial-gradient(
-      circle at top left,
-      color-mix(in srgb, var(--accent) 10%, transparent),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at top right,
-      color-mix(in srgb, var(--accent2) 8%, transparent),
-      transparent 28%
-    ),
-    var(--background);
+
+html, body {
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
-  transition:
-    background 0.3s,
-    color 0.3s;
+  font-family: var(--font-sans), monospace, ui-sans-serif, system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* CRT Scanline & Grid Effect for Terminal Feel */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.terminal-glow {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+}
+
+/* Custom Scrollbar for IDE / Terminal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+
